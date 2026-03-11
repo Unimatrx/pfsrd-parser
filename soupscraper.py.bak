@@ -15,7 +15,7 @@ def scrape_creatures():
     for i, link in enumerate(all_links):
         contents = requests.get(link).content
         assert type(contents) is bytes
-        soup = BeautifulSoup(contents, "html5lib")
+        soup = BeautifulSoup(contents, "html.parser")
         chunk = soup.find(class_="article-content")
         filename = chunk.find("h1").text
         filename = filename.replace("/", " ")
@@ -39,7 +39,7 @@ def scrape_creatures_url():
     for i, link in enumerate(all_links):
         contents = requests.get(link).content
         assert type(contents) is bytes
-        soup = BeautifulSoup(contents, "html5lib")
+        soup = BeautifulSoup(contents, "html.parser")
         chunk = soup.find(class_="article-content")
         filename = link
         safe_name = re.sub(r'[^\w\-_.]', '_', filename)
@@ -75,7 +75,7 @@ def link_scraper(creaturetype):
     some_links = []
     link = f"https://www.d20pfsrd.com/bestiary/monster-listings/{creaturetype}"
     contents = requests.get(link).text
-    soup = BeautifulSoup(contents, "html5lib")
+    soup = BeautifulSoup(contents, "html.parser")
     piece = soup.find(class_="ogn-childpages")
     monsterlist = piece.find_all(class_="page new parent")
     for monster in monsterlist:
