@@ -16,7 +16,7 @@ def generate_dict():
             value_ = f_.read()
             monster_dict.update({key_: value_})
 
-    with open('monsters.json', 'w', encoding='utf-8') as f_:
+    with open('./data/monsters.json', 'w', encoding='utf-8') as f_:
         json.dump(monster_dict, f_, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":
